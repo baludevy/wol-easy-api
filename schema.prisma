@@ -11,7 +11,7 @@ generator client {
 }
 
 model Host {
-    id          Int    @id @default(autoincrement())
+    id          String @id @default(uuid())
     mac_address String @unique
     ip_address  String @unique
 
