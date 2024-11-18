@@ -26,8 +26,11 @@ async def add_host(ip_addr: str, mac_addr: str):
 
 @app.post("/delete_host")
 async def delete_host(host: str):
-    await db.host.delete(where={'id': host})
-    return "cool"
+    try:
+        await db.host.delete(where={'id': host})
+        return JSONResponse({"message": "cool"})
+    except:    
+        return JSONResponse({"message": "host not found"}, status_code=404)
 
 
 @app.post("/send_wol")
