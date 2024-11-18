@@ -1,0 +1,19 @@
+// database
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+// generator
+generator client {
+    provider             = "prisma-client-py"
+    recursive_type_depth = 5
+}
+
+model Host {
+    id          Int    @id @default(autoincrement())
+    mac_address String @unique
+    ip_address  String @unique
+
+    @@index([id])
+}
